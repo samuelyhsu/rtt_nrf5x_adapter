@@ -1,6 +1,6 @@
+from building import *
 Import('RTT_ROOT')
 Import('rtconfig')
-from building import *
 
 cwd = GetCurrentDir()
 
@@ -10,8 +10,8 @@ src = Split("""
 
 # src += ['drv_common.c']
 
-path =  [cwd + '/include']
+path = [cwd + '/include']
 
-group = DefineGroup('CMSIS', src, depend = [''], CPPPATH = path)
+group = DefineGroup('CMSIS', src, depend=[''], CPPPATH=path)
 
 Return('group')
