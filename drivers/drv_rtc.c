@@ -132,7 +132,7 @@ static rt_err_t rt_hw_rtc_register_5340(rt_device_t device, const char *name,
   return RT_EOK;
 }
 #else
-static rt_err_t rt_hw_rtc_register(rt_device_t device, const char *name,
+static rt_err_t drv_rt_hw_rtc_register(rt_device_t device, const char *name,
                                    rt_uint32_t flag) {
   struct tm time_new = ONCHIP_RTC_TIME_DEFAULT;
 
@@ -168,7 +168,7 @@ int rt_hw_rtc_init(void) {
 #if defined(SOC_NRF5340)
   result = rt_hw_rtc_register_5340(&rtc, "rtc", RT_DEVICE_FLAG_RDWR);
 #else
-  result = rt_hw_rtc_register(&rtc, "rtc", RT_DEVICE_FLAG_RDWR);
+  result = drv_rt_hw_rtc_register(&rtc, "rtc", RT_DEVICE_FLAG_RDWR);
 #endif
   if (result != RT_EOK) {
     LOG_E("rtc register err code: %d", result);
