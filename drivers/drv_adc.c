@@ -48,6 +48,10 @@ static void set_channels(drv_nrfx_saadc_channel_t *channel) {
     results.channels[channel->channel_num] =
         (nrfx_saadc_channel_t)NRFX_SAADC_DEFAULT_CHANNEL_SE(
             channel->pin_p + 1, channel->channel_num);
+    results.channels[channel->channel_num].channel_config.gain =
+        NRF_SAADC_GAIN1_6; // 如果该引脚是给电池做采样，需要设置为NRF_SAADC_GAIN1_4，这样结果更准确，这边方便测试，设置为NRF_SAADC_GAIN1_6
+    results.channels[channel->channel_num].channel_config.acq_time =
+        NRF_SAADC_ACQTIME_20US;
   } else if (channel->mode == NRF_SAADC_MODE_DIFFERENTIAL) {
     results.channels[channel->channel_num] =
         (nrfx_saadc_channel_t)NRFX_SAADC_DEFAULT_CHANNEL_DIFFERENTIAL(
@@ -90,8 +94,8 @@ static rt_err_t nrf5x_adc_enabled(struct rt_adc_device *device,
         nrfx_saadc_channels_config(channels_cache, results.channel_count);
 
     err_code = nrfx_saadc_simple_mode_set(
-        get_channels_mask(), NRF_SAADC_RESOLUTION_12BIT,
-        NRF_SAADC_OVERSAMPLE_DISABLED, nrf5x_saadc_event_hdr);
+        get_channels_mask(), NRF_SAADC_RESOLUTION_14BIT,
+        SAADC_OVERSAMPLE_OVERSAMPLE_Over16x, nrf5x_saadc_event_hdr);
 
     err_code = nrfx_saadc_buffer_set(result_buff_cache, results.channel_count);
   } else {

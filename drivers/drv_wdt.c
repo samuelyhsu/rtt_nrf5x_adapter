@@ -76,6 +76,7 @@ static int wdt_sample(int argc, char *argv[]) {
   rt_device_init(wdt);
   rt_device_control(wdt, RT_DEVICE_CTRL_WDT_SET_TIMEOUT, &timeout);
   rt_device_control(wdt, RT_DEVICE_CTRL_WDT_START, RT_NULL);
+  return 0;
 }
 MSH_CMD_EXPORT(wdt_sample, wdt sample);
 
