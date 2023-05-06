@@ -44,6 +44,7 @@ static rt_err_t wdt_control(rt_watchdog_t *wdt, int cmd, void *arg) {
     break;
   case RT_DEVICE_CTRL_WDT_START:
     if (nrf5x_wdt.is_start != 1) {
+      nrf5x_wdt_cfg.behaviour = NRF_WDT_BEHAVIOUR_PAUSE_SLEEP_HALT;
       nrfx_wdt_init(&nrf5x_wdt.wdt, &nrf5x_wdt_cfg, RT_NULL);
       nrfx_wdt_channel_alloc(&nrf5x_wdt.wdt, &nrf5x_wdt.ch);
       nrfx_wdt_enable(&nrf5x_wdt.wdt);
