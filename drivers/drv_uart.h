@@ -1,6 +1,10 @@
 #ifndef _UART_H_
 #define _UART_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define RT_DEVICE_CTRL_CUSTOM 0x20
 #define RT_DEVICE_CTRL_PIN 0x21
 #define RT_DEVICE_POWERSAVE 0x22
@@ -13,4 +17,7 @@
 
 int rt_hw_uart_init(void);
 
+#ifdef __cplusplus
+}
+#endif
 #endif

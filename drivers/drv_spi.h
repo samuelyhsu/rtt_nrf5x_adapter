@@ -16,6 +16,10 @@
 #ifndef __DRV_SPI_H_
 #define __DRV_SPI_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifdef BSP_USING_SPI
 #if defined(SOC_NRF5340)
 #include "nrfx_spim.h"
@@ -122,4 +126,8 @@ struct nrfx_drv_spi_pin_config {
 };
 #endif
 #endif /* BSP_USING_SPI */
+
+#ifdef __cplusplus
+}
+#endif
 #endif /*__DRV_SPI_H_*/

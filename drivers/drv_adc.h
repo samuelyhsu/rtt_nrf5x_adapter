@@ -11,6 +11,10 @@
 #ifndef __DRV_ADC_H__
 #define __DRV_ADC_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "rtdevice.h"
 #include <board.h>
 #include <drivers/include/nrfx_saadc.h>
@@ -42,5 +46,9 @@ typedef struct {
   nrf_saadc_value_t result_buffer[8];
   volatile uint8_t done;
 } drv_nrfx_saadc_result_t;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __DRV_ADC_H__ */
